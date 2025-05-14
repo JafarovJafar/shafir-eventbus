@@ -37,6 +37,6 @@ public class ShafirEventBus
 
         var existingDelegate = _delegates[typeof(T)];
         var action = (Action<T>)existingDelegate;
-        action(message);
+        action?.Invoke(message);
     }
 }

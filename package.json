@@ -1,0 +1,14 @@
+{
+  "name": "jaf.shafir.event-bus",
+  "version": "1.0.0",
+  "displayName": "Shafir EventBus",
+  "description": "",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://github.com/JafarovJafar/shafir-eventbus/blob/main/README.md",
+  "author": {
+    "name": "Jafarov Jafar",
+    "email": "jafarovja@yandex.ru",
+    "url": "https://github.com/JafarovJafar"
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Shafir.EventBus.Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:de34d7c4e754ad2458ec76ac46bbf985"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,42 +1,45 @@
 using System;
 using System.Collections.Generic;
 
-public class ShafirEventBus
+namespace Shafir.EventBus
 {
-    private Dictionary<Type, Delegate> _delegates;
-
-    public ShafirEventBus()
+    public class ShafirEventBus
     {
-        _delegates = new Dictionary<Type, Delegate>();
-    }
+        private Dictionary<Type, Delegate> _delegates;
 
-    public void Subscribe<T>(Action<T> action)
-    {
-        if (!_delegates.ContainsKey(typeof(T)))
+        public ShafirEventBus()
         {
-            _delegates.Add(typeof(T), null);
+            _delegates = new Dictionary<Type, Delegate>();
         }
 
-        var existingDelegate = _delegates[typeof(T)];
-        existingDelegate = Delegate.Combine(existingDelegate, action);
-        _delegates[typeof(T)] = existingDelegate;
-    }
+        public void Subscribe<T>(Action<T> action)
+        {
+            if (!_delegates.ContainsKey(typeof(T)))
+            {
+                _delegates.Add(typeof(T), null);
+            }
 
-    public void UnSubscribe<T>(Action<T> action)
-    {
-        if (!_delegates.ContainsKey(typeof(T))) return;
+            var existingDelegate = _delegates[typeof(T)];
+            existingDelegate = Delegate.Combine(existingDelegate, action);
+            _delegates[typeof(T)] = existingDelegate;
+        }
 
-        var existingDelegate = _delegates[typeof(T)];
-        existingDelegate = Delegate.Remove(existingDelegate, action);
-        _delegates[typeof(T)] = existingDelegate;
-    }
+        public void UnSubscribe<T>(Action<T> action)
+        {
+            if (!_delegates.ContainsKey(typeof(T))) return;
 
-    public void Publish<T>(T message)
-    {
-        if (!_delegates.ContainsKey(typeof(T))) return;
+            var existingDelegate = _delegates[typeof(T)];
+            existingDelegate = Delegate.Remove(existingDelegate, action);
+            _delegates[typeof(T)] = existingDelegate;
+        }
 
-        var existingDelegate = _delegates[typeof(T)];
-        var action = (Action<T>)existingDelegate;
-        action?.Invoke(message);
+        public void Publish<T>(T message)
+        {
+            if (!_delegates.ContainsKey(typeof(T))) return;
+
+            var existingDelegate = _delegates[typeof(T)];
+            var action = (Action<T>)existingDelegate;
+            action?.Invoke(message);
+        }
     }
 }
